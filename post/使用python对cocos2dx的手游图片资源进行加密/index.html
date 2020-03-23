@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="hnliu&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://hnliu.github.io//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://hnliu.github.io//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="使用python对cocos2dx的手游图片资源进行加密" />
+    <meta property="og:title" content="使用python对cocos2dx的手游图片资源进行加密" />
+    <meta property="twitter:title" content="使用python对cocos2dx的手游图片资源进行加密" />
+    
+
+    
+    <meta name="description" content="刘翰男，程序员, 开源爱好者，生活探险家 | 这里是 刘翰男 的博客，与你一起发现更大的世界。">
+    <meta property="og:description" content="刘翰男，程序员, 开源爱好者，生活探险家 | 这里是 刘翰男 的博客，与你一起发现更大的世界。" />
+    <meta property="twitter:description" content="刘翰男，程序员, 开源爱好者，生活探险家 | 这里是 刘翰男 的博客，与你一起发现更大的世界。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="刘翰男, hnliu, hnliu Blog, 博客, 个人网站, 互联网, Web, 云原生, PaaS, Istio, Kubernetes, 微服务, Microservice">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>使用python对cocos2dx的手游图片资源进行加密-hnliu&#39;s Blog</title>
+
+    <link rel="canonical" href="/post/%E4%BD%BF%E7%94%A8python%E5%AF%B9cocos2dx%E7%9A%84%E6%89%8B%E6%B8%B8%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90%E8%BF%9B%E8%A1%8C%E5%8A%A0%E5%AF%86/">
+
+    <link rel="stylesheet" href="/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+    
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    
+    <script src="/js/jquery.min.js"></script>
+    
+    
+    <script src="/js/bootstrap.min.js"></script>
+    
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">hnliu&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/tech">tech</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/top/books/">BOOKS</a></li>
+                    
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+		    <li>
+                        <a href="/search">SEARCH <img src="/img/search.png" height="15" style="cursor: pointer;" alt="Search"></a>
+		    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/tag1" title="tag1">
+                            tag1
+                        </a>
+                        
+                        <a class="tag" href="/tags/tag2" title="tag2">
+                            tag2
+                        </a>
+                        
+                    </div>
+                    <h1>使用python对cocos2dx的手游图片资源进行加密</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by 
+                        
+                                 &#34;hnliu&#34;
+                         
+                        on 
+                        Thursday, September 8, 2016
+                        
+                        
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <header>
+                    <h2>TOC</h2>
+                </header>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#使用python对cocos2dx的手游图片资源进行加密">使用python对cocos2dx的手游图片资源进行加密</a>
+      <ul>
+        <li><a href="#导言">导言</a></li>
+      </ul>
+    </li>
+    <li><a href="#步骤">步骤</a>
+      <ul>
+        <li><a href="#1编写python加密模块">1.编写python加密模块</a></li>
+        <li><a href="#2修改cocos2dx引擎">2.修改cocos2dx引擎</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                
+                <h1 id="使用python对cocos2dx的手游图片资源进行加密">使用python对cocos2dx的手游图片资源进行加密</h1>
+<hr>
+<h2 id="导言">导言</h2>
+<p>由于项目的需要，要对游戏的图片资源进行加密，目前比较常用的做法应该是使用TexturePacker的加密功能。但因为我们的整个打包流程都是python脚本控制，自动化完成的，如果要使用TexturePacker的加密功能，就要把TexturePacker的命令行工具集成到整个自动化打包工具中。考虑到工作量会比较大，所以决定采用在图片压缩后自动遍历assets目录下的所有的图片并使用python自动进行字节流加密的解决方案。缺点是加密方式比较简单，易于破解。</p>
+<hr>
+<h1 id="步骤">步骤</h1>
+<h2 id="1编写python加密模块">1.编写python加密模块</h2>
+<p>加密模块的大致思路就是以2进制可读的方式打开图片资源文件，然后遍历字节流，对每个字节进行一定的转化，我采用的是异或一个随机的值，然后在整个文件的头部加上三个字节的标识，用来标识这个图片是否进行了加密处理。然后第四个字节保存加密的密钥。最后将二进制数据流写入一个新的图片文件，同时删除老的图片文件。图片的加密过程到此就结束了。</p>
+<pre><code>########################################
+# __encrypt__.py
+# 功能：对png、jpg进行加密处理
+# 作者：刘翰男
+# 创建：2016-09-01
+########################################
+import os
+import sys
+import random
+print(&quot;__encrypt__.py&quot;)
+
+#随机生成密匙random.randint(1, 255)
+encrypt_key = random.randint(1, 255)
+#加密过的标示，两个字节
+have_encrypt_first_flag = 0x12
+have_encrypt_second_flag = 0x34
+have_encrypt_third_flag = 0x56
+
+#images_path是需要加密的图片的绝对路径
+def encrypt(images_path):
+    f = open(images_path, 'rb')
+    filedata = f.read()
+    filesize = f.tell()
+    f.close()
+
+    file_byte_array = bytearray(filedata)
+
+    #判断是否加密过
+    if(have_encrypt_first_flag == file_byte_array[0]
+        and have_encrypt_second_flag == file_byte_array[1]
+        and have_encrypt_third_flag == file_byte_array[2]):
+            print('this png has encrypt before!')
+    else:
+        encrypt_file_byte_array = bytearray(0)
+        encrypt_file_byte_array.append(have_encrypt_first_flag)
+        encrypt_file_byte_array.append(have_encrypt_second_flag)
+        encrypt_file_byte_array.append(have_encrypt_third_flag)
+        encrypt_file_byte_array.append(encrypt_key)
+
+        for byte in file_byte_array:
+            encrypt_bype = byte ^ encrypt_key
+            encrypt_file_byte_array.append(encrypt_bype)
+
+        workdir = os.path.split(images_path)[0]
+
+        os.remove(images_path)
+        f2 = open(images_path,'wb')
+        f2.write(encrypt_file_byte_array)
+        f2.close()
+
+#判断是否是png和jpg图片
+def judge_is_png_or_jpg(file_name):
+    suffix = os.path.splitext(file_name)[1]
+    if  suffix== '.png' or suffix == '.jpg' or suffix == '.PNG' or suffix == '.JPG':
+        return True
+    else:
+        return False
+</code></pre>
+<h2 id="2修改cocos2dx引擎">2.修改cocos2dx引擎</h2>
+<p>我们知道，所有的资源文件，都要先从磁盘读到内存。我们要修改的就是读取的这个过程。打开cocos2dx引擎源码文件CCImage.cpp，找到initWithImageFile(const std::string&amp; path)这个方法。修改前的源代码如下：</p>
+<pre><code>bool Image::initWithImageFile(const std::string&amp; path)
+{
+    bool ret = false;
+    _filePath = FileUtils::getInstance()-&gt;fullPathForFilename(path);
+
+    Data data = FileUtils::getInstance()-&gt;getDataFromFile(_filePath);
+
+    if (!data.isNull())
+    {
+        auto bin = data.getBytes();
+        auto size = data.getSize();
+
+        ret = initWithImageData(data.getBytes() + encrypt_head_lengh, data.getSize());
+    }
+    return ret;
+}
+</code></pre>
+<p>这个方法是读取图片文件，然后获取byte数据流，并用这些数据初始化形成图片，现在我们要做的就是在获取到这些二进制数据之后，进行解密。</p>
+<ol>
+<li>获取前三个字节，如果是加密标识的话，表明这个图片已经进行了，加密处理，在此则要进行解密处理。</li>
+<li>取第四个字节，也就是对当前这个图片进行加密时的密钥，拿这个密钥进行解密。</li>
+<li>用解密后的字节流初始化形成图片。</li>
+</ol>
+<p>修改后的源代码如下：</p>
+<pre><code>bool Image::initWithImageFile(const std::string&amp; path)
+{
+    bool ret = false;
+    _filePath = FileUtils::getInstance()-&gt;fullPathForFilename(path);
+    Data data = FileUtils::getInstance()-&gt;getDataFromFile(_filePath);
+
+    if (!data.isNull())
+    {
+        auto bin = data.getBytes();
+        auto size = data.getSize();
+
+        unsigned char have_encrypt_first_flag = *bin;
+        unsigned char have_encrypt_second_flag = *(bin + 1);
+        unsigned char have_encrypt_third_flag = *(bin + 2);
+        unsigned char encrypt_key = 0;
+        unsigned int encrypt_head_flag_lengh = 3;
+        unsigned int encrypt_head_lengh = 4;
+
+        if (have_encrypt_first_flag == 0x12
+            &amp;&amp; have_encrypt_second_flag == 0x34
+            &amp;&amp; have_encrypt_third_flag == 0x56)
+        {
+            encrypt_key = *(bin + encrypt_head_flag_lengh);
+            auto *cur = bin + encrypt_head_lengh;
+            auto count = size - encrypt_head_lengh;
+            while (count)
+            {
+                *cur ^= encrypt_key;
+                ++cur;
+                --count;
+            }
+
+            ret = initWithImageData(data.getBytes() + encrypt_head_lengh, data.getSize());
+        }
+        else
+        {
+            ret = initWithImageData(data.getBytes(), data.getSize());
+        }
+    }
+
+    return ret;
+}
+</code></pre>
+<p>PS：小知识</p>
+<pre><code>int a = 0x1121;
+int b = 0x21;
+int c = a^b;
+再用c^b会发现等于a。</code></pre>
+
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p>「真诚赞赏，手留余香」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="https://hnliu.github.io/"><img src="/img/favicon.png" />hnliu&#39;s Blog</a></span>
+        
+	        <p class="tip"><i></i><span>真诚赞赏，手留余香</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/js/reward.js"></script>
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/post/%E5%A4%A7%E8%AF%9D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/" data-toggle="tooltip" data-placement="top" title="大话设计模式之（装饰器模式）">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://zhaozhihan.com">Pw的博客</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="hnliu&#39;s Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fa fa-circle fa-stack-2x"></i>
+                               <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+                   
+                    
+                    <li>
+                        <a href="mailto:youremail@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    <li>
+                        <a target="_blank" href="/your%20wechat%20qr%20code%20image">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-wechat fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/yourgithub">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/yourlinkedinid">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/yourstackoverflowid">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+            
+                    
+                    
+                    
+            
+            
+            
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; hnliu&#39;s Blog 2020
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+</body>
+</html>

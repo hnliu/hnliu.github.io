@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>hnliu&#39;s Blog</title>
-    <link>https://hnliu.github.io/</link>
-    <description>Recent content on hnliu&#39;s Blog</description>
+    <title>Tech on hnliu&#39;s Blog</title>
+    <link>https://hnliu.github.io/categories/tech/</link>
+    <description>Recent content in Tech on hnliu&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 04 Apr 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://hnliu.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hnliu.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

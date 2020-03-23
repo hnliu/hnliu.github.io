@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="hnliu&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://hnliu.github.io//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://hnliu.github.io//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="JS性能优化规则" />
+    <meta property="og:title" content="JS性能优化规则" />
+    <meta property="twitter:title" content="JS性能优化规则" />
+    
+
+    
+    <meta name="description" content="刘翰男，程序员, 开源爱好者，生活探险家 | 这里是 刘翰男 的博客，与你一起发现更大的世界。">
+    <meta property="og:description" content="刘翰男，程序员, 开源爱好者，生活探险家 | 这里是 刘翰男 的博客，与你一起发现更大的世界。" />
+    <meta property="twitter:description" content="刘翰男，程序员, 开源爱好者，生活探险家 | 这里是 刘翰男 的博客，与你一起发现更大的世界。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="刘翰男, hnliu, hnliu Blog, 博客, 个人网站, 互联网, Web, 云原生, PaaS, Istio, Kubernetes, 微服务, Microservice">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>JS性能优化规则-hnliu&#39;s Blog</title>
+
+    <link rel="canonical" href="/post/js%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E8%A7%84%E5%88%99/">
+
+    <link rel="stylesheet" href="/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+    
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    
+    <script src="/js/jquery.min.js"></script>
+    
+    
+    <script src="/js/bootstrap.min.js"></script>
+    
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">hnliu&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/tech">tech</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/top/books/">BOOKS</a></li>
+                    
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+		    <li>
+                        <a href="/search">SEARCH <img src="/img/search.png" height="15" style="cursor: pointer;" alt="Search"></a>
+		    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/tag1" title="tag1">
+                            tag1
+                        </a>
+                        
+                        <a class="tag" href="/tags/tag2" title="tag2">
+                            tag2
+                        </a>
+                        
+                    </div>
+                    <h1>JS性能优化规则</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by 
+                        
+                                 &#34;hnliu&#34;
+                         
+                        on 
+                        Thursday, April 4, 2019
+                        
+                        
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <header>
+                    <h2>TOC</h2>
+                </header>
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#js性能优化规则">JS性能优化规则</a>
+      <ul>
+        <li><a href="#1作用域优化">1.作用域优化</a></li>
+        <li><a href="#2属性查找优化">2.属性查找优化</a></li>
+        <li><a href="#3循环优化">3.循环优化</a></li>
+        <li><a href="#4其他优化">4.其他优化</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                
+                <h1 id="js性能优化规则">JS性能优化规则</h1>
+<hr>
+<h2 id="1作用域优化">1.作用域优化</h2>
+<p>随着作用域中的作用域数量的增加，访问当前作用域以外的变量的时间也在增加。所以访问全局变量总是比访问局部变量要慢，因为需要遍历作用域链。只要能减少花费在作用域链上的时间，就能增加脚本的整体性能。
+所以尽量避免多次的全局查找（因为要逐层向上的作用域进行查找）</p>
+<p>这个函数的时间复杂度是 (循环次数 * 查找到 document.title属性) 的次数，查找到 title 最坏的情况是遍历 document 的所有属性，最后才查找到 title 属性，而且每一次查找document都要进行多层的，逐层向上的作用域查找</p>
+<p>优化前</p>
+<pre><code>function test() {
+    var imgs = document.getElementByTagName(&quot;img&quot;);
+    for(var i = 0, len = imgs.length; i &lt; len; i++) {
+        imgs[i].title = document.title + &quot; image &quot; + i;
+    }
+}
+</code></pre>
+<p>优化后</p>
+<pre><code>function test() {
+    var title = document.title;
+    var imgs = doc.getElementByTagName(&quot;img&quot;);
+    for(var i = 0, len = imgs.length; i &lt; len; i++) {
+        imgs[i].title = title + &quot; image &quot; + i;
+    }
+}
+</code></pre>
+<hr>
+<h2 id="2属性查找优化">2.属性查找优化</h2>
+<p>JS中访问变量或者数组都是 O(1) 操作，比访问对象上的属性更有效率，访问对象的属性的是一个 O(n) 的操作，最坏的情况是查找对象所有的属性后，才查找到。对象的任何属性查找要比访问变量花费更长的时间，因为必须在原型链中对拥有该名称的属性进行一次搜索，即属性查找越多，执行时间越长。所以针对需要多次用到的对象属性，应将其存储在局部变量，或者使用对象解构的方式存储起来。</p>
+<p>这个函数在优化前的时间复杂度是 O(100 * n) ,因为一共 100 次循环，每次循环的时候都要去查找An属性，每次查找An属性都要遍历n次</p>
+<p>优化前</p>
+<pre><code>let data = {
+    A1: 1,
+    A2: 2,
+    A3: 3
+    ...
+    An: 100
+}
+
+function test(data) {
+    for(let i = 0; i &lt; 100; ++i) {
+        console.log(data.An);
+    }
+}
+
+test(data);
+</code></pre>
+<p>优化后</p>
+<pre><code>let data = {
+    A1: 1,
+    A2: 2,
+    A3: 3
+    ...
+    An: 100
+}
+
+function test({A1, A2, A3...An}) {
+    function test(data) {
+    for(let i = 0; i &lt; 100; ++i) {
+        console.log(An);
+    }
+}
+
+test(data);
+</code></pre>
+<p>优化后的时间复杂度就只为 O(100) 了，不需要每次循环中都去查找 An 属性的值，而是使用局部变量进行了存储。</p>
+<hr>
+<h2 id="3循环优化">3.循环优化</h2>
+<p>循环是编程中最常见的结构，优化循环是性能优化过程中很重要的一部分。一个循环的基本优化步骤如下：</p>
+<p>减值迭代——大多数循环使用一个从0开始，增加到某个特定值的迭代器。在很多情况下，从最大值开始，在循环中不断减值的迭代器更加有效。</p>
+<p>简化终止条件——由于每次循环过程都会计算终止条件，故必须保证它尽可能快，即避免属性查找或其它 O(n) 的操作。</p>
+<p>简化循环体——循环体是执行最多的，故要确保其被最大限度地优化。确保没有某些可以被很容易移出循环的密集计算。</p>
+<h2 id="4其他优化">4.其他优化</h2>
+<p>(1) switch语句较快——若有一系列复杂的if-else语句，可以转换成单个switch语句则可以得到更快的代码，还可以通过将case语句按照最可能的到最不可能的顺序进行组织，来进一步优化。</p>
+<p>(2) 位运算较快——当进行数学运算时，位运算操作要比任何布尔运算或算数运算快。选择性地用位运算替换算数运算可以极大提升复杂计算的性能，诸如取模，逻辑与和逻辑或也可以考虑用位运算来替换。</p>
+<p>(3) 字符串拼接，在 JS 中使用 &ldquo;+&rdquo; 号来拼接字符串效率是比较低的，因为每次运行都会开辟新的内存并生成新的字符串变量，然后将拼接结果赋值给新变量。与之相比更为高效的做法是使用 join 方法，因此当需要拼接的字符串较多的时候可以考虑用此方法。更提倡使用es6中的字符串模板，更加的快速高效。当然如果只是几个或者几十个字符串的拼接，那么使用哪种方法在性能上的区别都不大。</p>
+<p>(4) 使用直接量，在某些浏览器上对象创建比直接量要耗时很多</p>
+<pre><code>var aTest = new Array(); //替换为
+var aTest = [];
+var aTest = new Object; //替换为
+var aTest = {};
+var reg = new RegExp(); //替换为
+var reg = /../;
+//如果要创建具有一些特性的一般对象，也可以使用字面量，如下：
+var oFruit = new O;
+oFruit.color = &quot;red&quot;;
+oFruit.name = &quot;apple&quot;;
+//前面的代码可用对象字面量来改写成这样：
+var oFruit = { color: &quot;red&quot;, name: &quot;apple&quot; };
+</code></pre>
+<p>(5) 最小化语句数</p>
+<p>JS代码中的语句数量也会影响所执行的操作的速度，完成多个操作的单个语句要比完成单个操作的多个语句块快。故要找出可以组合在一起的语句，以减来整体的执行时间。这里列举几种模式</p>
+<p>优化前</p>
+<pre><code>var i = 1;
+var j = &quot;hello&quot;;
+var arr = [1,2,3];
+var now = new Date();
+</code></pre>
+<p>优化后</p>
+<pre><code>var i = 1,
+j = &quot;hello&quot;,
+arr = [1,2,3],
+now = new Date();
+</code></pre>
+<p>优化前</p>
+<pre><code>var name = values[i];
+i++;
+</code></pre>
+<p>优化后</p>
+<pre><code>var name = values[i++];
+</code></pre>
+<p>优化前</p>
+<pre><code>var a = new Array();
+a[0] = 1;
+a[1] = &quot;hello&quot;;
+a[2] = 45;
+
+var o = new Obejct();
+o.name = &quot;bill&quot;;
+o.age = 13;
+</code></pre>
+<p>优化后</p>
+<pre><code>var a = [1, &quot;hello&quot;, 45];
+var o = {
+    name : &quot;bill&quot;,
+    age : 13
+};
+</code></pre>
+<hr>
+
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p>「真诚赞赏，手留余香」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="https://hnliu.github.io/"><img src="/img/favicon.png" />hnliu&#39;s Blog</a></span>
+        
+	        <p class="tip"><i></i><span>真诚赞赏，手留余香</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/js/reward.js"></script>
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0%E6%B6%88%E6%81%AF%E8%A7%A3%E8%80%A6/" data-toggle="tooltip" data-placement="top" title="观察者模式及如何通过消息机制（观察者模式）实现模块间解耦">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+                
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://zhaozhihan.com">Pw的博客</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="hnliu&#39;s Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fa fa-circle fa-stack-2x"></i>
+                               <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+                   
+                    
+                    <li>
+                        <a href="mailto:youremail@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    <li>
+                        <a target="_blank" href="/your%20wechat%20qr%20code%20image">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-wechat fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/yourgithub">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/yourlinkedinid">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/yourstackoverflowid">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+            
+                    
+                    
+                    
+            
+            
+            
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; hnliu&#39;s Blog 2020
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+</body>
+</html>

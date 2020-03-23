@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>观察者模式 on hnliu&#39;s Blog</title>
+    <link>https://hnliu.github.io/tags/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+    <description>Recent content in 观察者模式 on hnliu&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 06 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://hnliu.github.io/tags/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>观察者模式及如何通过消息机制（观察者模式）实现模块间解耦</title>
+      <link>https://hnliu.github.io/post/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0%E6%B6%88%E6%81%AF%E8%A7%A3%E8%80%A6/</link>
+      <pubDate>Tue, 06 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://hnliu.github.io/post/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0%E6%B6%88%E6%81%AF%E8%A7%A3%E8%80%A6/</guid>
+      <description>1、什么是观察者模式 什么是观察者模式呢，观察者模式又叫做订阅发布模式，类似这样的例子生活里随处可见，比如公众号，比如微博关注的功能，这都是订</description>
+    </item>
+    
+  </channel>
+</rss>

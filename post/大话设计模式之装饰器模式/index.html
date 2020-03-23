@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="hnliu&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://hnliu.github.io//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://hnliu.github.io//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="大话设计模式之（装饰器模式）" />
+    <meta property="og:title" content="大话设计模式之（装饰器模式）" />
+    <meta property="twitter:title" content="大话设计模式之（装饰器模式）" />
+    
+
+    
+    <meta name="description" content="刘翰男，程序员, 开源爱好者，生活探险家 | 这里是 刘翰男 的博客，与你一起发现更大的世界。">
+    <meta property="og:description" content="刘翰男，程序员, 开源爱好者，生活探险家 | 这里是 刘翰男 的博客，与你一起发现更大的世界。" />
+    <meta property="twitter:description" content="刘翰男，程序员, 开源爱好者，生活探险家 | 这里是 刘翰男 的博客，与你一起发现更大的世界。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="刘翰男, hnliu, hnliu Blog, 博客, 个人网站, 互联网, Web, 云原生, PaaS, Istio, Kubernetes, 微服务, Microservice">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>大话设计模式之（装饰器模式）-hnliu&#39;s Blog</title>
+
+    <link rel="canonical" href="/post/%E5%A4%A7%E8%AF%9D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/">
+
+    <link rel="stylesheet" href="/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+    
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    
+    <script src="/js/jquery.min.js"></script>
+    
+    
+    <script src="/js/bootstrap.min.js"></script>
+    
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">hnliu&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/tech">tech</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/top/books/">BOOKS</a></li>
+                    
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+		    <li>
+                        <a href="/search">SEARCH <img src="/img/search.png" height="15" style="cursor: pointer;" alt="Search"></a>
+		    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/tag1" title="tag1">
+                            tag1
+                        </a>
+                        
+                        <a class="tag" href="/tags/tag2" title="tag2">
+                            tag2
+                        </a>
+                        
+                    </div>
+                    <h1>大话设计模式之（装饰器模式）</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by 
+                        
+                                 &#34;hnliu&#34;
+                         
+                        on 
+                        Wednesday, August 2, 2017
+                        
+                        
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <header>
+                    <h2>TOC</h2>
+                </header>
+                <nav id="TableOfContents"></nav>
+                
+                <p>导言：我曾经以为我可以用继承处理一切。后来我领教到运行时扩展，远比编译时期的继承威力大。装饰器模式可以给爱用继承的人一个全新的眼界。一旦你熟悉了装饰器模式，你将学会如何在运行的过程中给对象赋予新的指责和功能。</p>
+<hr>
+<p>先不谈模式，如果现在要你开发一个可以给人搭配不同服饰的系统，不如类似QQ、网络游戏或论坛都有的Avatar系统，你怎么开发？
+半小时后，小菜的第一版代码出炉。</p>
+<p>代码结构图：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwODAyMTUxMTA2NzQ4?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<pre><code>#include &quot;stdafx.h&quot;
+#include &lt;iostream&gt;
+
+using namespace std;
+
+class Person
+{
+public:
+    Person(string n){ name = n; }
+    void wearTShirts(){ cout &lt;&lt; &quot;大T恤 &quot;; }
+    void wearBigTrouser(){ cout &lt;&lt; &quot;垮裤 &quot;; }
+    void wearSneakers(){ cout &lt;&lt; &quot;破球鞋 &quot;; }
+    void wearSuit(){ cout &lt;&lt; &quot;西装 &quot;; }
+    void wearTie(){ cout &lt;&lt; &quot;领带 &quot;; }
+    void wearLeatherShoes(){ cout &lt;&lt; &quot;皮鞋 &quot;; }
+    void show(){ cout &lt;&lt; &quot;装扮的&quot; &lt;&lt; name.c_str(); }
+private:
+    string name;
+};
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+    Person* p = new Person(&quot;小菜&quot;);
+
+    cout &lt;&lt; &quot;第一种装扮：&quot; &lt;&lt; endl;
+    p-&gt;wearTShirts();
+    p-&gt;wearBigTrouser();
+    p-&gt;wearSneakers();
+    p-&gt;show();
+
+    cout &lt;&lt; &quot;第二种装扮：&quot; &lt;&lt; endl;
+    p-&gt;wearSuit();
+    p-&gt;wearTie();
+    p-&gt;wearLeatherShoes();
+    p-&gt;show();
+
+    return 0;
+}
+
+</code></pre><p>功能是实现了，现在的问题是如果我要增加 “超人” 的装扮，你得如何做？“那就改改 ‘Person’ 类就行了”，小菜说完就反应过来了，“哦，不对，这就违背开放-封闭原则了。”
+下面我们来说说装饰模式。装饰模式可以动态的给一个对象添加一些额外的职责。就增加功能来说，装饰模式比生成子类要更为灵活。
+“啊，装饰这个词真好，无论衣服、鞋子、领带、披风其实都可以理解为对人的装饰，我们来看一下他的结构。”</p>
+<p>结构图</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwODAyMTYwODIyMTUz?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p>Component是定义了一个对象接口，可以给这些对象动态的添加职责。ConcreteComponent是定义了一个具体的对象，也可以给这个对象添加一些职责。Decorator，装饰抽象类，继承了Component，从外类来扩展Component类的功能，但对于Component来说就无需知道Decorator的存在。至于ConcreteDecorator就是个具体的装饰对象，起到给Component添加职责的功能。</p>
+<p>下面来看看具体的代码实现</p>
+<p><strong>Component类</strong></p>
+<pre><code>class Component
+{
+public:
+    virtual void operate() = 0;
+};
+
+</code></pre><p><strong>ConcreteComponent类</strong></p>
+<pre><code>class ConcreteComponent : public Component
+{
+public:
+    virtual void operate() override
+    {
+        cout &lt;&lt; &quot;具体对象的操作&quot; &lt;&lt; endl;
+    }
+};
+
+</code></pre><p><strong>Decorate类</strong></p>
+<pre><code>class Decorate : public Component
+{
+public:
+    Decorate(Component* c){ comp = c; }
+
+    virtual void operate() override
+    {
+        comp-&gt;operate();
+    }
+private:
+    Component* comp = nullptr;
+};
+
+</code></pre><p><strong>ConcreteDecorate类</strong></p>
+<pre><code>class ConcreteDecorateA : public Decorate
+{
+public:
+    ConcreteDecorateA (Component* c)
+        : Decorate(c)
+    {
+        comp = c;
+    }
+
+    virtual void operate() override
+    {
+        Decorate::operate();
+        addedState = &quot;New state&quot;;
+        cout &lt;&lt; &quot;具体装饰对象A的操作&quot; &lt;&lt; endl;
+    }
+private:
+    string addedState;
+};
+
+class ConcreteDecorateB : public Decorate
+{
+public:
+    ConcreteDecorateB(Component* c)
+        : Decorate(c)
+    {
+        comp = c;
+    }
+
+    virtual void operate() override
+    {
+        Decorate::operate();
+        addedBehavior();
+        cout &lt;&lt; &quot;具体装饰对象B的操作&quot; &lt;&lt; endl;
+    }
+private:
+    void addedBehavior()
+    {
+        cout &lt;&lt; &quot;addedBehavior&quot; &lt;&lt; endl;
+    }
+};
+
+</code></pre><p><strong>客户端代码</strong></p>
+<pre><code>
+int _tmain(int argc, _TCHAR* argv[])
+{
+    ConcreteComponent* c = new ConcreteComponent();
+    ConcreteDecorateA* d1 = new ConcreteDecorateA(c);
+    ConcreteDecorateA* d2 = new ConcreteDecorateA(d1);
+
+    d2-&gt;operate();
+
+    return 0;
+}
+
+</code></pre><p>“我明白了，原来装饰模式是利用类的构造来对对象进行包装的。这样每个装饰对象的实现就和如何使用这个对象分离开了，每个装饰对象只关心自己的功能，不需要关心如何被添加到对象链当中。用刚才的例子来说，就是我们完全可以先穿外裤，再穿内裤，而不一定要先内后外。”
+“既然你明白了，还不赶快把刚才的例子改成装饰模式的代码？”
+“我还有个问题，刚才我写的例子中的 ‘人’ 类是Component还是ConcreteComponent呢？”
+“哈，学习模式要善于变通，如果只有一个ConcreteComponent类而没有抽象的Component类，那么Decorator类可以是ConcreteComponent的一个子类。同样道理，如果只有一个ConcreteDecorator类，那么没必要建立一个单独的Decorator类，而可以把Decorator和ConcreteDecorator的责任合并成一个类。”
+“啊，原来如此。在这里我们就没有必要有Component类了，直接让服饰类Decorator继承人类ConcreteComponent就可以了。”</p>
+<p>二十分钟后，小菜的第三版代码出炉。</p>
+<p>代码结构图：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwODAyMTY1OTQ2MDY1?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<hr>
+<p><strong>Person类</strong></p>
+<pre><code>class Person
+{
+public:
+    Person(string n){ name = n; }
+    virtual void show(){ cout &lt;&lt; &quot;装扮的&quot; &lt;&lt; name.c_str(); }
+private:
+    string name;
+};
+
+</code></pre><p><strong>Finery（服饰类）</strong></p>
+<pre><code>
+class Finery : public Person
+{
+public:
+    void decorate(Person* p){ component = p; }
+    virtual void show()
+    {
+        if (component)
+        {
+            component-&gt;show();
+        }
+    }
+private:
+    Person* component;
+};
+
+</code></pre><p><strong>具体服饰类</strong></p>
+<pre><code>class TShirts : public Finery
+{
+public:
+    virtual void show()
+    {
+        cout &lt;&lt; &quot;大T恤 &quot;;
+        Finery::show();
+    }
+};
+
+class BigTrouser : public Finery
+{
+public:
+    virtual void show()
+    {
+        cout &lt;&lt; &quot;垮裤 &quot;;
+        Finery::show();
+    }
+};
+
+//其余类似，省略
+
+</code></pre><p><strong>客户端代码</strong></p>
+<pre><code>
+int _tmain(int argc, _TCHAR* argv[])
+{
+    Person* p = new Person(&quot;小菜&quot;);
+    TShirts* ts = new TShirts();
+    Suit* st = new Suit();
+    BigTrouser* bt = new BigTrouser();
+
+    //用大T恤装饰了一个光着的小菜
+    ts-&gt;decorate(p);
+    //用垮裤装饰了一个穿着大T恤的小菜
+    bt-&gt;decorate(ts);
+    //用西装装饰了一个穿着垮裤, 大T恤的小菜
+    st-&gt;decorate(bt);
+    bt-&gt;show();
+
+    return 0;
+}
+
+</code></pre><hr>
+<p>总结：</p>
+<p>装饰模式是为已有功能动态的添加更多功能的一种方式。</p>
+<p>当系统需要新的功能时，我们原有的做法是向旧的代码加入新的代码。这些新的代码通常装饰了原有类的核心职责和主要行为，不如用西装来装饰小菜，但这种做法的主要问题在于，在主类中加入了新的字段，新的方法，新的逻辑，从而增加了主类的复杂度，同时也违背了开闭原则。</p>
+<p>装饰模式提供了一个很好的解决方案，它把每个要装饰新增的功能放在单独的类中，并让这个类装饰他要包装的类。因此在需要执行特殊行为时，客户代码就可以运行时根据需要有选择，有顺寻的使用装饰功能装饰对象了。这样就把类的核心功能和装饰功能区分开了，而且可以去除相关类中重复的装饰逻辑。</p>
+
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p>「真诚赞赏，手留余香」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="https://hnliu.github.io/"><img src="/img/favicon.png" />hnliu&#39;s Blog</a></span>
+        
+	        <p class="tip"><i></i><span>真诚赞赏，手留余香</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/js/reward.js"></script>
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/%E4%BD%BF%E7%94%A8python%E5%AF%B9cocos2dx%E7%9A%84%E6%89%8B%E6%B8%B8%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90%E8%BF%9B%E8%A1%8C%E5%8A%A0%E5%AF%86/" data-toggle="tooltip" data-placement="top" title="使用python对cocos2dx的手游图片资源进行加密">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/%E6%8E%A8%E8%8D%90%E4%B8%80%E6%AC%BE%E5%A5%BD%E7%94%A8%E7%9A%84visualstudio%E6%8F%92%E4%BB%B6/" data-toggle="tooltip" data-placement="top" title="一款好用的Visual Studio插件">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://zhaozhihan.com">Pw的博客</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="hnliu&#39;s Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fa fa-circle fa-stack-2x"></i>
+                               <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+                   
+                    
+                    <li>
+                        <a href="mailto:youremail@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    <li>
+                        <a target="_blank" href="/your%20wechat%20qr%20code%20image">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-wechat fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/yourgithub">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/yourlinkedinid">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/yourstackoverflowid">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+            
+                    
+                    
+                    
+            
+            
+            
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; hnliu&#39;s Blog 2020
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+</body>
+</html>
