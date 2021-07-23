@@ -1,58 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on hnliu&#39;s Blog</title>
-    <link>https://hnliu.github.io/tags/</link>
-    <description>Recent content in Tags on hnliu&#39;s Blog</description>
+    <title>Tags on 我的博客</title>
+    <link>hnliu.github.io/tags/</link>
+    <description>Recent content in Tags on 我的博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 04 Apr 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://hnliu.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 09 Jul 2021 10:58:08 -0400</lastBuildDate><atom:link href="hnliu.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>tag1</title>
-      <link>https://hnliu.github.io/tags/tag1/</link>
-      <pubDate>Thu, 04 Apr 2019 00:00:00 +0000</pubDate>
+      <title>scene</title>
+      <link>hnliu.github.io/tags/scene/</link>
+      <pubDate>Fri, 09 Jul 2021 10:58:08 -0400</pubDate>
       
-      <guid>https://hnliu.github.io/tags/tag1/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tag2</title>
-      <link>https://hnliu.github.io/tags/tag2/</link>
-      <pubDate>Thu, 04 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://hnliu.github.io/tags/tag2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>观察者模式</title>
-      <link>https://hnliu.github.io/tags/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Tue, 06 Mar 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://hnliu.github.io/tags/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>解耦</title>
-      <link>https://hnliu.github.io/tags/%E8%A7%A3%E8%80%A6/</link>
-      <pubDate>Tue, 06 Mar 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://hnliu.github.io/tags/%E8%A7%A3%E8%80%A6/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>订阅发布模式</title>
-      <link>https://hnliu.github.io/tags/%E8%AE%A2%E9%98%85%E5%8F%91%E5%B8%83%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Tue, 06 Mar 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://hnliu.github.io/tags/%E8%AE%A2%E9%98%85%E5%8F%91%E5%B8%83%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>hnliu.github.io/tags/scene/</guid>
       <description></description>
     </item>
     
