@@ -17,6 +17,16 @@
     </item>
     
     <item>
+      <title>hugo 部署到码云</title>
+      <link>https://hnliu.github.io/post/hugo%E7%BD%91%E9%A1%B5%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Mon, 06 Sep 2021 10:58:08 -0400</pubDate>
+      
+      <guid>https://hnliu.github.io/post/hugo%E7%BD%91%E9%A1%B5%E9%83%A8%E7%BD%B2/</guid>
+      <description>hugo 命令
+ 编译 hugo 编译完成后把public下的全部文件拷贝到 hnliu.github.io 文件夹下，然后push到码云仓库 点击服务 Gitee Pages 然后开启即可  </description>
+    </item>
+    
+    <item>
       <title>python如何生成exe</title>
       <link>https://hnliu.github.io/post/python%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90exe%E6%96%87%E4%BB%B6/</link>
       <pubDate>Mon, 06 Sep 2021 10:58:08 -0400</pubDate>

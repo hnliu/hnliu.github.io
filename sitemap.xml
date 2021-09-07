@@ -12,6 +12,11 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://hnliu.github.io/post/hugo%E7%BD%91%E9%A1%B5%E9%83%A8%E7%BD%B2/</loc>
+    <lastmod>2021-09-06T10:58:08-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://hnliu.github.io/post/python%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90exe%E6%96%87%E4%BB%B6/</loc>
     <lastmod>2021-09-06T10:58:08-04:00</lastmod>
     <changefreq>monthly</changefreq>
