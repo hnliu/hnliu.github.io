@@ -8,6 +8,43 @@
     <language>zh-cn</language>
     <lastBuildDate>Thu, 02 Mar 2017 12:00:00 -0500</lastBuildDate><atom:link href="https://hnliu.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Android事件分发之Activity篇</title>
+      <link>https://hnliu.github.io/post/android%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E4%B9%8Bactivity%E7%AF%87/</link>
+      <pubDate>Mon, 06 Sep 2021 10:58:08 -0400</pubDate>
+      
+      <guid>https://hnliu.github.io/post/android%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E4%B9%8Bactivity%E7%AF%87/</guid>
+      <description>&lt;h4 id=&#34;android事件分发之activity篇--dispatchtoucheventontouchevent之间关系&#34;&gt;Android事件分发之Activity篇 – dispatchTouchEvent、onTouchEvent之间关系&lt;/h4&gt;</description>
+    </item>
+    
+    <item>
+      <title>python如何生成exe</title>
+      <link>https://hnliu.github.io/post/python%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90exe%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Mon, 06 Sep 2021 10:58:08 -0400</pubDate>
+      
+      <guid>https://hnliu.github.io/post/python%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90exe%E6%96%87%E4%BB%B6/</guid>
+      <description>&lt;p&gt;Python是一门高级语言，日常使用中，我们经常想让Python生成为.exe格式的文件。那么如何让Python生成exe文件呢？接下来，小编就演示操作步骤。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Android优雅地处理按钮重复点击</title>
+      <link>https://hnliu.github.io/post/android%E4%BC%98%E9%9B%85%E5%9C%B0%E5%A4%84%E7%90%86%E6%8C%89%E9%92%AE%E9%87%8D%E5%A4%8D%E7%82%B9%E5%87%BB/</link>
+      <pubDate>Mon, 26 Jul 2021 08:58:59 -0400</pubDate>
+      
+      <guid>https://hnliu.github.io/post/android%E4%BC%98%E9%9B%85%E5%9C%B0%E5%A4%84%E7%90%86%E6%8C%89%E9%92%AE%E9%87%8D%E5%A4%8D%E7%82%B9%E5%87%BB/</guid>
+      <description>&lt;p&gt;App中，有很大一部分场景是点击按钮，向服务端提交数据，由于网络请求需要时间，用户很可能会多次点击，造成数据重复提交，造成各种莫名其妙的问题。
+因此，防止按钮多次点击，是Android开发中一个很重要的技术手段。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>详解 ImageView 的 scaleType 的各种设置</title>
+      <link>https://hnliu.github.io/post/%E8%AF%A6%E8%A7%A3center_cropcenter_insidefit_center/</link>
+      <pubDate>Mon, 26 Jul 2021 08:58:59 -0400</pubDate>
+      
+      <guid>https://hnliu.github.io/post/%E8%AF%A6%E8%A7%A3center_cropcenter_insidefit_center/</guid>
+      <description>&lt;p&gt;本文详细解释了 ImageView 的 CENTER_CROP,CENTER_INSIDE,FIT_CENTER 等属性具体有什么作用以及与其他几种属性的区别&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>nginx配置Http和Https步骤</title>
       <link>https://hnliu.github.io/post/nginx%E9%85%8D%E7%BD%AEhttp%E5%92%8Chttps%E6%AD%A5%E9%AA%A4/</link>
       <pubDate>Wed, 21 Jul 2021 11:25:05 -0400</pubDate>
@@ -177,6 +214,19 @@ Android 系统为什么使用 Binder 实现跨进程通信，而不是使用 Loc
       <guid>https://hnliu.github.io/post/2020%E5%B9%B46%E6%9C%88%E5%A4%A7%E6%9D%82%E7%83%A9/</guid>
       <description>&lt;h3 id=&#34;一些看到的比较好的技术文章&#34;&gt;一些看到的比较好的技术文章&lt;/h3&gt;
 &lt;p&gt;android View.post 到底干了啥&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hnliu.github.io/post/%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hnliu.github.io/post/%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6/</guid>
+      <description>事件分发机制 当我们嵌套去使用各种滑动控件的时候，经常会遇到各种滑动冲突的问题，比如 ViewPager 嵌套ScrollView，ScrollView 嵌套 recycleView。这个时候我们要么去使用别人已经处理过滑动冲突的组件，要么我们会自己去处理滑动的冲突。
+我们首先来简单考虑一下，为什么会出现滑动冲突这种问题。
+多个可以同方向或者反方向滑动的控件重叠在一起以后，就会出现控件无法按照我们的预期进行滑动，比如 ViewPager 内部嵌套了一个可以相同方向进行滑动的 scrollView。
+我们首先一定是希望在触摸滑动的时候，优先滑动 scrollView，当 scrollView 滑动到底部或者顶部的时候，再去滑动外层的 ViewPager。可是当我们这样使用的时候，一切并不能尽如人意，内部的scrollView 居然不能滑动了。
+首先 Activity 的 dispatchTouchEvent 会首先被调用，然后会调用到 ViewGroup的dispatchTouchEvent 方法。（这中间省略了 PhoneWindow 和 DecroView 的调用）</description>
     </item>
     
   </channel>

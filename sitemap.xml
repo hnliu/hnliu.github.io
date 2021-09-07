@@ -2,8 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://hnliu.github.io/post/android%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E4%B9%8Bactivity%E7%AF%87/</loc>
+    <lastmod>2021-09-06T10:58:08-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://hnliu.github.io/</loc>
-    <lastmod>2021-07-21T11:25:05-04:00</lastmod>
+    <lastmod>2021-09-06T10:58:08-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://hnliu.github.io/post/python%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90exe%E6%96%87%E4%BB%B6/</loc>
+    <lastmod>2021-09-06T10:58:08-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://hnliu.github.io/tags/scene/</loc>
+    <lastmod>2021-09-06T10:58:08-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://hnliu.github.io/tags/</loc>
+    <lastmod>2021-09-06T10:58:08-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://hnliu.github.io/post/android%E4%BC%98%E9%9B%85%E5%9C%B0%E5%A4%84%E7%90%86%E6%8C%89%E9%92%AE%E9%87%8D%E5%A4%8D%E7%82%B9%E5%87%BB/</loc>
+    <lastmod>2021-07-26T08:58:59-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://hnliu.github.io/post/%E8%AF%A6%E8%A7%A3center_cropcenter_insidefit_center/</loc>
+    <lastmod>2021-07-26T08:58:59-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -28,16 +58,6 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://hnliu.github.io/post/2021%E5%B9%B47%E6%9C%88%E4%BB%BD%E6%9D%82%E8%AE%B0/</loc>
-    <lastmod>2021-07-09T10:58:08-04:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://hnliu.github.io/tags/scene/</loc>
-    <lastmod>2021-07-09T10:58:08-04:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://hnliu.github.io/tags/</loc>
     <lastmod>2021-07-09T10:58:08-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -109,6 +129,10 @@
   </url><url>
     <loc>https://hnliu.github.io/post/</loc>
     <lastmod>2017-03-02T12:00:00-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://hnliu.github.io/post/%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>

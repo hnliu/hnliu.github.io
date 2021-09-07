@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>详解 ImageView 的 scaleType 的各种设置 | 我的博客</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="本文详细解释了 ImageView 的 CENTER_CROP,CENTER_INSIDE,FIT_CENTER 等属性具体有什么作用以及与其他几种属性的区别">
+    <meta name="generator" content="Hugo 0.85.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="详解 ImageView 的 scaleType 的各种设置" />
+<meta property="og:description" content="本文详细解释了 ImageView 的 CENTER_CROP,CENTER_INSIDE,FIT_CENTER 等属性具体有什么作用以及与其他几种属性的区别" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hnliu.github.io/post/%E8%AF%A6%E8%A7%A3center_cropcenter_insidefit_center/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-07-26T08:58:59-04:00" />
+<meta property="article:modified_time" content="2021-07-26T08:58:59-04:00" /><meta property="og:site_name" content="我的博客" />
+
+<meta itemprop="name" content="详解 ImageView 的 scaleType 的各种设置">
+<meta itemprop="description" content="本文详细解释了 ImageView 的 CENTER_CROP,CENTER_INSIDE,FIT_CENTER 等属性具体有什么作用以及与其他几种属性的区别"><meta itemprop="datePublished" content="2021-07-26T08:58:59-04:00" />
+<meta itemprop="dateModified" content="2021-07-26T08:58:59-04:00" />
+<meta itemprop="wordCount" content="475">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="详解 ImageView 的 scaleType 的各种设置"/>
+<meta name="twitter:description" content="本文详细解释了 ImageView 的 CENTER_CROP,CENTER_INSIDE,FIT_CENTER 等属性具体有什么作用以及与其他几种属性的区别"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        我的博客
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="关于 page">
+              关于
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="文章 page">
+              文章
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/contact/" title="联系我们 page">
+              联系我们
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+<a href="https://twitter.com/GoHugoIO" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        文章
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://hnliu.github.io/post/%E8%AF%A6%E8%A7%A3center_cropcenter_insidefit_center/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://hnliu.github.io/post/%E8%AF%A6%E8%A7%A3center_cropcenter_insidefit_center/&amp;text=%e8%af%a6%e8%a7%a3%20ImageView%20%e7%9a%84%20scaleType%20%e7%9a%84%e5%90%84%e7%a7%8d%e8%ae%be%e7%bd%ae" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://hnliu.github.io/post/%E8%AF%A6%E8%A7%A3center_cropcenter_insidefit_center/&amp;title=%e8%af%a6%e8%a7%a3%20ImageView%20%e7%9a%84%20scaleType%20%e7%9a%84%e5%90%84%e7%a7%8d%e8%ae%be%e7%bd%ae" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">详解 ImageView 的 scaleType 的各种设置</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2021-07-26T08:58:59-04:00">July 26, 2021</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>本文详细解释了 ImageView 的 CENTER_CROP,CENTER_INSIDE,FIT_CENTER 等属性具体有什么作用以及与其他几种属性的区别</p>
+<p>/**
+* 测试CENTER属性
+* 
+* 将图片显示在ImageView的中心点，不执行任何缩放
+* 
+* 1.1 若图片宽和高均小于ImageView控件的宽高，则图片显示在ImageView正中间
+* 1.2 若图片宽或高大于ImageView控件的宽或高,则图片不会完整地显示
+* <br>
+* 即在此属性作用下:
+* 如果图片宽高均小于图片宽高，那么图片可以在ImageView中间完整地以原大小显示
+* 如果图片的宽或者高大于ImageView大小，图片不可完整显示
+* 
+*/
+private void testCenter(int resourceID) {
+Bitmap bitmap = BitmapFactory.decodeResource(getResources(),resourceID);
+System.out.println(&quot;&mdash;&gt; width=&quot; + bitmap.getWidth()+ &quot; ,height=&quot; + bitmap.getHeight());
+mImageView.setScaleType(ScaleType.CENTER);
+mImageView.setImageResource(resourceID);
+}</p>
+<pre><code>/**
+* 测试CENTER_CROP属性
+* 
+* 将图片放在ImageView的中心点，然后对图片进行等比例缩放
+* 
+* 官方文档描述：
+* Scale the image uniformly (maintain the image's aspect ratio) so that 
+* both dimensions (width and height) of the image will be equal to or larger 
+* than the corresponding dimension of the view (minus padding). 
+* 这段文字值得好好体会一下。
+* 简而言之：
+* 等比例缩放图片使得图片的宽和高均不小于控件对应的宽高
+* 
+* 1.1 若图片宽和高均小于ImageView控件的宽高，则等比例放大图片，直至铺满ImageView.
+*     当然这种情况下的等比例放大，就可能导致图片X或Y方向的图片显示不全
+* 1.2 若图片宽或高小于ImageView控件的宽或高,则将图片等比例放大直到铺满ImageView
+*     比如ImageView为750*750,图片为600*800,所以会等比例放大图片，直至图片宽度变为
+*     750.但是这样会造成图片的高度大于了ImageView的高，所以图片的垂直方向显示不全，会被剪裁
+* 1.3 如图片宽和高均大于ImageView控件的宽和高
+*     此时等比例缩小图片，当图片的宽高中任意一值等于控件对应的宽高时停止缩小图片。
+*     在这种情况下就很可能造成：图片显示不完整
+* 
+* 所以CENTER_CROP属性的显著特点:
+* 图片会铺满整个ImageView，但图片可能显示不完整
+* 
+*/
+private void testCenterCrop(int resourceID) {
+    Bitmap bitmap = BitmapFactory.decodeResource(getResources(),resourceID);
+    System.out.println(&quot;---&gt; width=&quot; + bitmap.getWidth()+ &quot; ,height=&quot; + bitmap.getHeight());
+    mImageView.setScaleType(ScaleType.CENTER_CROP);
+    mImageView.setImageResource(resourceID);
+}
+
+/**
+* 测试CENTER_INSIDE属性
+* 
+* 将图片放在ImageView的中心点，然后对图片进行等比例缩放
+* 
+* 官方文档:
+* Scale the image uniformly (maintain the image's aspect ratio) so that 
+* both dimensions (width and height) of the image will be equal to or less 
+* than the corresponding dimension of the view (minus padding). 
+* 
+* 简而言之：
+* 等比例缩放图片使得图片的宽和高均不大于控件对应的宽高
+* 
+* 1.1 若图片宽和高均小于ImageView控件的宽高，则将图片放在ImageView中间。
+*     此情况下，图片的四周可见ImageView的背景色
+* 1.2 若图片宽或高大于ImageView控件的宽或高,则将图片等比例缩小直到ImageView可以完整显示该图片
+*    此情况下，图片的上下或者左右可见ImageView的背景色
+* 1.3 如图片宽和高均大于ImageView控件的宽和高
+*     此情况下，等比例缩小图片使得图片的宽和高均不大于控件的宽高。
+*     所以，这也很容易导致图片的上下或者左右可见ImageView的背景色
+* 
+* 至此，可见CENTER_INSIDE属性的特点
+* 1 始终会完全显示整张图片
+* 2 很可能导致ImageView控件留白，即露出背景色
+* 
+* 
+* 到这就可以明显看出CENTER_CROP和CENTER_INSIDE的区别：
+* 1 CENTER_CROP   要求图片的宽高均不小于控件宽高
+* 2 CENTER_INSIDE 要求图片的宽高均不大于控件宽高
+* 
+*/
+private void testCenterInside(int resourceID) {
+    Bitmap bitmap = BitmapFactory.decodeResource(getResources(),resourceID);
+    System.out.println(&quot;---&gt; width=&quot; + bitmap.getWidth()+ &quot; ,height=&quot; + bitmap.getHeight());
+    mImageView.setScaleType(ScaleType.CENTER_INSIDE);
+    mImageView.setImageResource(resourceID);
+}
+
+/**
+* 测试FIT_CENTER属性
+* 
+* 将图片放在ImageView的中心点，然后对图片进行等比例缩放
+* 
+* 官方文档：
+* Scale the image using CENTER.
+* CENTER: 
+* Compute a scale that will maintain the original src aspect ratio, 
+* but will also ensure that src fits entirely inside dst. 
+* At least one axis (X or Y) will fit exactly. The result is centered inside dst.
+* 
+* 在理解了CENTER_CROP和CENTER_INSIDE之后再看FIT_CENTER就会好理解一些
+* 
+* 将图片放在ImageView的中心点，对图片进行等比例缩放从而完整地显示图片
+* 
+* 
+* 
+* 1.1 若图片宽和高均小于ImageView控件的宽高，则等比例放大图片
+*     直到图片的宽高中任意一值等于控件的宽或者高
+*     此情况下，图片的上下或者左右可见ImageView的背景色
+*     
+*    
+* 1.2  若图片宽和高均大于ImageView控件的宽和高，则等比例缩小图片
+*     直到图片的宽高中任意一值等于控件的宽或者高
+*     所以，这也很容易导致图片的上下或者左右可见ImageView的背景色
+*     
+* 1.3  若图片宽或高大于ImageView控件的宽或高
+*     这时候是该执行放大呢？还是缩小呢？
+*     其实，此时是有一个原则的：完整地显示图片。
+*     就像文档中所说：ensure that src fits entirely inside dst
+*     所以，此时会对图片进行缩放，直到图片的宽高均不大于控件的宽高
+* 
+* 所以，在使用FIT_CENTER时可以完整地显示图片，而且它有一个显著的特点：
+* 它使得图片的宽高中至少有一个值恰好等于控件的宽或者高。
+* 这一点也是它和CENTER_INSIDE属性的主要区别
+* 
+*/
+private void testFitCenter(int resourceID) {
+    Bitmap bitmap = BitmapFactory.decodeResource(getResources(),resourceID);
+    System.out.println(&quot;---&gt; width=&quot; + bitmap.getWidth()+ &quot; ,height=&quot; + bitmap.getHeight());
+    mImageView.setScaleType(ScaleType.FIT_CENTER);
+    mImageView.setImageResource(resourceID);
+}
+
+/**
+* 测试FIT_END属性
+* 
+* FIT_END和FIT_CENTER属性非常类似
+* 差别在于，FIT_END最终会将缩放后的图片放在ImageView控件的右下角
+*/
+private void testFitEnd(int resourceID) {
+    Bitmap bitmap = BitmapFactory.decodeResource(getResources(),resourceID);
+    System.out.println(&quot;---&gt; width=&quot; + bitmap.getWidth()+ &quot; ,height=&quot; + bitmap.getHeight());
+    mImageView.setScaleType(ScaleType.FIT_END);
+    mImageView.setImageResource(resourceID);
+}
+
+/**
+* 测试FIT_START属性
+* 
+* FIT_START和FIT_CENTER属性非常类似
+* 差别在于，FIT_END最终会将缩放后的图片放在ImageView控件的左上角
+*/
+private void testFitStart(int resourceID) {
+    Bitmap bitmap = BitmapFactory.decodeResource(getResources(),resourceID);
+    System.out.println(&quot;---&gt; width=&quot; + bitmap.getWidth()+ &quot; ,height=&quot; + bitmap.getHeight());
+    mImageView.setScaleType(ScaleType.FIT_START);
+    mImageView.setImageResource(resourceID);
+}
+
+/**
+* 测试FIT_XY属性
+* 
+* 不按照比例缩放图片，从而使图片铺满整个ImageView。
+* 在此情况下虽然可以完整地显示图片，但是图片会被拉伸导致失真
+* 
+*/
+private void testFitXY(int resourceID) {
+    Bitmap bitmap = BitmapFactory.decodeResource(getResources(),resourceID);
+    System.out.println(&quot;---&gt; width=&quot; + bitmap.getWidth()+ &quot; ,height=&quot; + bitmap.getHeight());
+    mImageView.setScaleType(ScaleType.FIT_XY);
+    mImageView.setImageResource(resourceID);
+}</code></pre><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://hnliu.github.io/" >
+    &copy;  我的博客 2021 
+  </a>
+    <div>
+
+
+
+
+<a href="https://twitter.com/GoHugoIO" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
