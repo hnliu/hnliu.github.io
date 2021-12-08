@@ -136,61 +136,17 @@
           
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
-      <div class="f6">
-        July 21, 2021
-      </div>
-    
     <h1 class="f3 near-black">
-      <a href="/post/%E4%B8%8A%E7%BA%BF%E6%B5%81%E7%A8%8B%E6%B1%87%E6%80%BB/" class="link black dim">
-        上线流程汇总
+      <a href="/post/%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6/" class="link black dim">
+        
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h3 id="客户端相关">客户端相关</h3>
-<p>性能优化
-使用 leakcanary 检测内存泄露</p>
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        July 18, 2021
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E5%86%85%E9%83%A8%E8%B7%B3%E8%BD%AC%E9%93%BE%E6%8E%A5/" class="link black dim">
-        内部跳转链接
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h3 id="跳转到首页推荐下某个分类topicid不传则跳转到推荐下的热门">跳转到首页推荐下某个分类(topicId不传则跳转到推荐下的热门)</h3>
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        July 11, 2021
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E8%AF%BB%E9%87%8D%E6%9E%84-%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81%E7%9A%84%E8%AE%BE%E8%AE%A1%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E7%90%86%E8%A7%A3/" class="link black dim">
-        重构-改善既有代码的设计
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <ul>
-<li>重构(名词)：对软件内部结构的一种调整，目的是不改变软件可观察行为的前提下，提高其可理解性，降低其修改成本。</li>
-</ul>
+      事件分发机制 当我们嵌套去使用各种滑动控件的时候，经常会遇到各种滑动冲突的问题，比如 ViewPager 嵌套ScrollView，ScrollView 嵌套 recycleView。这个时候我们要么去使用别人已经处理过滑动冲突的组件，要么我们会自己去处理滑动的冲突。
+我们首先来简单考虑一下，为什么会出现滑动冲突这种问题。
+多个可以同方向或者反方向滑动的控件重叠在一起以后，就会出现控件无法按照我们的预期进行滑动，比如 ViewPager 内部嵌套了一个可以相同方向进行滑动的 scrollView。
+我们首先一定是希望在触摸滑动的时候，优先滑动 scrollView，当 scrollView 滑动到底部或者顶部的时候，再去滑动外层的 ViewPager。可是当我们这样使用的时候，一切并不能尽如人意，内部的scrollView 居然不能滑动了。
+首先 Activity 的 dispatchTouchEvent 会首先被调用，然后会调用到 ViewGroup的dispatchTouchEvent 方法。（这中间省略了 PhoneWindow 和 DecroView 的调用）
     </div>
   </div>
 
@@ -203,28 +159,28 @@
         <a href="/post/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/2/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/post/" aria-label="Page 1" class="page-link" role="button">1</a>
-      </li>
-      <li class="page-item">
-        <a href="/post/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
-      </li>
-      <li class="page-item active">
-        <a href="#" aria-current="page" aria-label="Page 3" class="page-link" role="button">3</a>
-      </li>
-      <li class="page-item">
-        <a href="/post/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
+        <a href="/post/page/8/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
       </li>
       <li class="page-item">
         <a href="/post/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
       </li>
       <li class="page-item">
-        <a href="/post/page/4/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+        <a href="/post/page/6/" aria-label="Page 6" class="page-link" role="button">6</a>
       </li>
       <li class="page-item">
-        <a href="/post/page/9/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/7/" aria-label="Page 7" class="page-link" role="button">7</a>
+      </li>
+      <li class="page-item">
+        <a href="/post/page/8/" aria-label="Page 8" class="page-link" role="button">8</a>
+      </li>
+      <li class="page-item active">
+        <a href="#" aria-current="page" aria-label="Page 9" class="page-link" role="button">9</a>
+      </li>
+      <li class="page-item disabled">
+        <a href="#" aria-disabled="true" aria-label="Next" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item disabled">
+        <a href="#" aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

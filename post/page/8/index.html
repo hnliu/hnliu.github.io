@@ -178,16 +178,15 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
     <h1 class="f3 near-black">
-      <a href="/post/%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6/" class="link black dim">
+      <a href="/post/handler%E7%AE%80%E6%9E%90/" class="link black dim">
         
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      事件分发机制 当我们嵌套去使用各种滑动控件的时候，经常会遇到各种滑动冲突的问题，比如 ViewPager 嵌套ScrollView，ScrollView 嵌套 recycleView。这个时候我们要么去使用别人已经处理过滑动冲突的组件，要么我们会自己去处理滑动的冲突。
-我们首先来简单考虑一下，为什么会出现滑动冲突这种问题。
-多个可以同方向或者反方向滑动的控件重叠在一起以后，就会出现控件无法按照我们的预期进行滑动，比如 ViewPager 内部嵌套了一个可以相同方向进行滑动的 scrollView。
-我们首先一定是希望在触摸滑动的时候，优先滑动 scrollView，当 scrollView 滑动到底部或者顶部的时候，再去滑动外层的 ViewPager。可是当我们这样使用的时候，一切并不能尽如人意，内部的scrollView 居然不能滑动了。
-首先 Activity 的 dispatchTouchEvent 会首先被调用，然后会调用到 ViewGroup的dispatchTouchEvent 方法。（这中间省略了 PhoneWindow 和 DecroView 的调用）
+      谈到Handler，有几个词是一直绕不过的，Message，Looper，MessageQueue，我们后面再单独解释他们每个的作用。先来说一下，Handler是用来做什么的，当我们需要做一些耗时的任务时，如果放在主线程来做，那么务必会导致UI的卡顿，甚至可能引起ANR（Application Not Responding），这种情况下，我们一般会创建一个新的线程，去执行耗时的任务，但是再任务执行完以后，我们如果把处理结果返回到主线程，并且让主线程去执行一些操作呢。这个时候就可以去使用Handler。
+如果使用缺省的Handler构造函数，则这个handler会关联到当前线程的looper
+handler.sendEmptyMessage、sendMessage，post 等等方法最终都会通过 Message.obtain() 从消息池中取一个可用的消息，然后按照 when 时间的先后顺序丢到 messageQueue 中。
+我们知道Android 的应用进程启动发生在 ActivityThread的main方法，这个方法会先进行一系列的初始化工作，然后为当前线程创建一个Looper，然后调用Looper.loop 进入到一个死循环，不断从消息队列中获取消息执行，如果消息队列为空，或者队列中的消息都还没有到执行时间，则死循环会阻塞，CPU会得到释放。当有新的消息入队，或者队首的消息到了执行时间，则next方法中阻塞住的方法 nativePollOnce 就会继续执行。
     </div>
   </div>
 
@@ -203,9 +202,6 @@
         <a href="/post/page/7/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
-      </li>
-      <li class="page-item">
         <a href="/post/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
       </li>
       <li class="page-item">
@@ -217,11 +213,14 @@
       <li class="page-item active">
         <a href="#" aria-current="page" aria-label="Page 8" class="page-link" role="button">8</a>
       </li>
-      <li class="page-item disabled">
-        <a href="#" aria-disabled="true" aria-label="Next" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
+      <li class="page-item">
+        <a href="/post/page/9/" aria-label="Page 9" class="page-link" role="button">9</a>
       </li>
-      <li class="page-item disabled">
-        <a href="#" aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      <li class="page-item">
+        <a href="/post/page/9/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/post/page/9/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

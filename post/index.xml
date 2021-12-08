@@ -80,7 +80,7 @@
       <pubDate>Sun, 18 Jul 2021 11:00:59 -0400</pubDate>
       
       <guid>https://hnliu.github.io/post/%E5%86%85%E9%83%A8%E8%B7%B3%E8%BD%AC%E9%93%BE%E6%8E%A5/</guid>
-      <description>&lt;h3 id=&#34;通过首页推荐下分类的topicid跳转topicid不传则跳转到推荐下的热门&#34;&gt;通过首页推荐下分类的topicId跳转(topicId不传则跳转到推荐下的热门)&lt;/h3&gt;</description>
+      <description>&lt;h3 id=&#34;跳转到首页推荐下某个分类topicid不传则跳转到推荐下的热门&#34;&gt;跳转到首页推荐下某个分类(topicId不传则跳转到推荐下的热门)&lt;/h3&gt;</description>
     </item>
     
     <item>
@@ -224,6 +224,18 @@ Android 系统为什么使用 Binder 实现跨进程通信，而不是使用 Loc
       <guid>https://hnliu.github.io/post/2020%E5%B9%B46%E6%9C%88%E5%A4%A7%E6%9D%82%E7%83%A9/</guid>
       <description>&lt;h3 id=&#34;一些看到的比较好的技术文章&#34;&gt;一些看到的比较好的技术文章&lt;/h3&gt;
 &lt;p&gt;android View.post 到底干了啥&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hnliu.github.io/post/handler%E7%AE%80%E6%9E%90/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hnliu.github.io/post/handler%E7%AE%80%E6%9E%90/</guid>
+      <description>谈到Handler，有几个词是一直绕不过的，Message，Looper，MessageQueue，我们后面再单独解释他们每个的作用。先来说一下，Handler是用来做什么的，当我们需要做一些耗时的任务时，如果放在主线程来做，那么务必会导致UI的卡顿，甚至可能引起ANR（Application Not Responding），这种情况下，我们一般会创建一个新的线程，去执行耗时的任务，但是再任务执行完以后，我们如果把处理结果返回到主线程，并且让主线程去执行一些操作呢。这个时候就可以去使用Handler。
+如果使用缺省的Handler构造函数，则这个handler会关联到当前线程的looper
+handler.sendEmptyMessage、sendMessage，post 等等方法最终都会通过 Message.obtain() 从消息池中取一个可用的消息，然后按照 when 时间的先后顺序丢到 messageQueue 中。
+我们知道Android 的应用进程启动发生在 ActivityThread的main方法，这个方法会先进行一系列的初始化工作，然后为当前线程创建一个Looper，然后调用Looper.loop 进入到一个死循环，不断从消息队列中获取消息执行，如果消息队列为空，或者队列中的消息都还没有到执行时间，则死循环会阻塞，CPU会得到释放。当有新的消息入队，或者队首的消息到了执行时间，则next方法中阻塞住的方法 nativePollOnce 就会继续执行。</description>
     </item>
     
     <item>
