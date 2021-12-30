@@ -80,7 +80,9 @@
       <pubDate>Sun, 18 Jul 2021 11:00:59 -0400</pubDate>
       
       <guid>https://hnliu.github.io/post/%E5%86%85%E9%83%A8%E8%B7%B3%E8%BD%AC%E9%93%BE%E6%8E%A5/</guid>
-      <description>&lt;h3 id=&#34;跳转到首页推荐下某个分类topicid不传则跳转到推荐下的热门&#34;&gt;跳转到首页推荐下某个分类(topicId不传则跳转到推荐下的热门)&lt;/h3&gt;</description>
+      <description>&lt;ul&gt;
+&lt;li&gt;内部跳转链接汇总整理&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -92,6 +94,19 @@
       <description>&lt;ul&gt;
 &lt;li&gt;重构(名词)：对软件内部结构的一种调整，目的是不改变软件可观察行为的前提下，提高其可理解性，降低其修改成本。&lt;/li&gt;
 &lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>2021年12月大杂烩</title>
+      <link>https://hnliu.github.io/post/2021%E5%B9%B412%E6%9C%88%E4%BB%BD%E6%9D%82%E8%AE%B0/</link>
+      <pubDate>Fri, 09 Jul 2021 10:58:08 -0400</pubDate>
+      
+      <guid>https://hnliu.github.io/post/2021%E5%B9%B412%E6%9C%88%E4%BB%BD%E6%9D%82%E8%AE%B0/</guid>
+      <description>官网 Android framework 源码 git 地址 github: https://github.com/android/platform_frameworks_base google 官方: https://android.googlesource.com/platform/frameworks/base.git
+dalvik.system.DexClassLoader 等相关的源码
+https://android.googlesource.com/platform/libcore-snapshot/
+ IDEA出现java: 错误: 不支持发行版本 15 https://blog.csdn.net/weixin_48708934/article/details/109442892
+ 美团技术团队文章 https://tech.meituan.com/</description>
     </item>
     
     <item>
